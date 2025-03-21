@@ -1,18 +1,16 @@
-import React from "react";
-import SpacemanFigure from "./components/SpacemanFigure";
-import WordDisplay from "./components/WordDisplay";
-import GuessControls from "./components/GuessControls";
+import React, { useState } from "react";
+import DifficultySelector from "./components/DifficultySelector";
+import Game from "./components/Game";
 import "./styles/App.css";
 
 function App() {
-  return (
-    <div>
-      <h1>Spaceman Game</h1>
-      <SpacemanFigure wrongGuesses={0} />
-      <WordDisplay revealedLetters={["H", "_", "L", "L", "_"]} />
-      <GuessControls />
-    </div>
-  );
+  const [difficulty, setDifficulty] = useState(null);
+
+  if (!difficulty) {
+    return <DifficultySelector onSelectDifficulty={setDifficulty} />;
+  }
+
+  return <Game difficulty={difficulty} onChangeDifficulty={setDifficulty} />;
 }
 
 export default App;
