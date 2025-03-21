@@ -65,3 +65,22 @@ npm run dev
 ```
 
 The app will be accessible at http://localhost:5173
+
+## 📁 Project Structure
+
+> A quick overview of major files and folders
+
+| File/Folder                 | Description |
+|----------------------------|-------------|
+| `App.jsx`                  | Root component that tracks total wins/losses and renders the game UI. |
+| `components/Game.jsx`      | Main game logic wrapper. Handles difficulty selection, modal popups, and game resets. |
+| `components/SpacemanFigure.jsx` | Renders the visual stick-figure (spaceman) drawing based on incorrect guesses. |
+| `components/WordDisplay.jsx`    | Displays the word with guessed and unguessed letters. |
+| `components/GuessControls.jsx`  | Input forms for guessing a letter or a word. |
+| `components/Modal.jsx`     | Reusable modal used to display win/lose messages. |
+| `hooks/useSpacemanGame.js` | Custom hook that handles all core game logic: word generation, guesses, win/loss state. |
+| `data/words.js`            | Contains categorized word lists (easy, medium, hard). |
+| `styles/`                  | Contains custom CSS files and global styles. |
+| `public/`                  | Contains static assets like the favicon. |
+| `vite.config.js`           | Vite configuration for local dev server and build process. |
+
