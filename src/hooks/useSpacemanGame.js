@@ -77,7 +77,11 @@ export function useSpacemanGame({ maxWrongGuesses = 7, difficulty = "easy" }) {
       setGuessedLetters((prev) => [...prev, ...secretWord.split("")]);
       setGameStatus("won");
     } else {
-      setWrongGuesses((prev) => prev + 1);
+      setWrongGuesses((prev) => {
+        const updated = prev + 1;
+        checkForLose(updated);
+        return updated;
+      });
     }
   }
 

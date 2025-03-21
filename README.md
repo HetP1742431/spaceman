@@ -1,12 +1,66 @@
-# React + Vite
+# 🚀 Spaceman - A Hangman Variant Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The game dynamically selects a **random word** based on the chosen **difficulty level** and challenges the user to guess it **letter by letter** or by **attempting the full word** within **7 incorrect guesses**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## **🌟 Features**
 
-## Expanding the ESLint configuration
+✅ **Fully Functional Spaceman Game:** Play with dynamically generated words.  
+✅ **Difficulty Selection:** Choose between **Easy, Medium, and Hard**.  
+✅ **Win & Lose Conditions:** Intuitive UI feedback on victory and defeat.  
+✅ **New Game Option:** Start a fresh round anytime.  
+✅ **Repeated Guess Handling:** Shows a toast when a guessed letter is repeated.  
+✅ **Optimized Game Logic:** Efficient state management using React hooks.  
+✅ **Responsive & Intuitive UI:** Clean layout, visual feedback, and interactive elements.  
+✅ **Deployed Version:** https://spaceman-se0c.onrender.com/
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## **🛠️ Tech Stack**
+
+- **Frontend:** React (Vite)
+- **UI/UX:** CSS, Styled Components
+
+---
+
+## **📜 Game Rules**
+
+1. The **computer picks a random word** from a predefined word bank based on difficulty.
+2. The word is displayed as **underscores (\_)**, with each underscore representing a letter.
+3. The player can:
+   - **Guess a single letter** → If correct, it's revealed in all matching positions.
+   - **Guess the full word** → If correct, they win instantly. Otherwise, they lose a turn.
+4. Players get **7 incorrect guesses** before losing.
+5. **If all letters are guessed**, the player wins! 🎉
+6. **If all 7 mistakes are used**, the game ends in a loss. 😢
+7. Players can **start a new game** at any time or **change difficulty** mid-game.
+
+---
+
+## **🚀 Getting Started**
+
+### **1️⃣ Prerequisites**
+
+Ensure you have:
+
+- **Node.js (v14+ recommended)**
+- **npm or yarn package manager**
+
+### **2️⃣ Installation**
+
+Clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/yourusername/spaceman-react.git
+cd spaceman-react
+npm install
+```
+
+### **3️⃣ Run Locally**
+
+```bash
+npm run dev
+```
+
+The app will be accessible at http://localhost:5173
