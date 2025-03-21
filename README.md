@@ -54,7 +54,7 @@ Clone the repository and install dependencies:
 
 ```bash
 git clone https://github.com/HetP1742431/spaceman.git
-cd spaceman-react
+cd spaceman
 npm install
 ```
 
