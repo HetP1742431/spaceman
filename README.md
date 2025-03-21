@@ -6,19 +6,20 @@ The game dynamically selects a **random word** based on the chosen **difficulty 
 
 ## **🌟 Features**
 
-✅ **Fully Functional Spaceman Game:** Play with dynamically generated words.  
+✅ **Fully Functional Spaceman Game:** Play with randomly generated words.  
 ✅ **Difficulty Selection:** Choose between **Easy, Medium, and Hard**.  
 ✅ **Win & Lose Conditions:** Intuitive UI feedback on victory and defeat.  
 ✅ **New Game Option:** Start a fresh round anytime.  
 ✅ **Repeated Guess Handling:** Shows a toast when a guessed letter is repeated.  
 ✅ **Optimized Game Logic:** Efficient state management using React hooks.  
 ✅ **Responsive & Intuitive UI:** Clean layout, visual feedback, and interactive elements.  
-✅ **Deployed Version:** https://spaceman-se0c.onrender.com/
+✅ **Live deployed Version:** https://spaceman-se0c.onrender.com/
 
 ---
 
 ## **🛠️ Tech Stack**
 
+- **Language:** JavaScript
 - **Frontend:** React (Vite)
 - **UI/UX:** CSS, Styled Components
 
@@ -52,7 +53,7 @@ Ensure you have:
 Clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/yourusername/spaceman-react.git
+git clone https://github.com/HetP1742431/spaceman.git
 cd spaceman-react
 npm install
 ```

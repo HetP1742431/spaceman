@@ -14,14 +14,22 @@ function GuessControls({ gameStatus, onGuessLetter, onGuessWord }) {
     e.preventDefault();
     if (letterInput.length === 1 && /[a-zA-Z]/.test(letterInput)) {
       onGuessLetter(letterInput);
+    } else {
+      alert(
+        "Please enter only letters (A-Z). No numbers or special characters."
+      );
     }
     setLetterInput("");
   };
 
   const handleWordSubmit = (e) => {
     e.preventDefault();
-    if (wordInput.trim().length > 0) {
+    if (/^[a-zA-Z]+$/.test(wordInput.trim())) {
       onGuessWord(wordInput.trim());
+    } else {
+      alert(
+        "Please enter only letters (A-Z). No numbers or special characters."
+      );
     }
     setWordInput("");
   };
