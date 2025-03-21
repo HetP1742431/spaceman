@@ -1,11 +1,12 @@
 import React from "react";
 
 function WordDisplay({ revealedLetters }) {
-  // revealedLetters could be an array like ['H', '_', 'L', 'L', '_']
   return (
-    <div>
-      {revealedLetters.map((char, i) => (
-        <span key={i}>{char} </span>
+    <div style={{ fontSize: "1.5rem", margin: "1rem 0" }}>
+      {revealedLetters.map((char, idx) => (
+        <span key={idx} style={{ marginRight: "0.5rem" }}>
+          {char}
+        </span>
       ))}
     </div>
   );

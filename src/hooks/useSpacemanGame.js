@@ -5,63 +5,72 @@ export function useSpacemanGame({ maxWrongGuesses = 7, difficulty = "easy" }) {
   const [secretWord, setSecretWord] = useState("");
   const [guessedLetters, setGuessedLetters] = useState([]);
   const [wrongGuesses, setWrongGuesses] = useState(0);
-  const [gameStatus, setGameStatus] = useState("inProgress"); // Could be 'inProgress', 'won', or 'lost'
+  const [gameStatus, setGameStatus] = useState("inProgress"); // 'inProgress', 'won', or 'lost'
 
-  // Select the random word on mount or when difficulty changes
   useEffect(() => {
-    const wordsArray = getWordsByDifficulty(difficulty);
-    const randomIndex = Math.floor(Math.random() * wordsArray.length);
+    resetGame();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [difficulty]);
 
-    setSecretWord(wordsArray[randomIndex].toUpperCase());
+  function resetGame() {
+    const wordsArray = getWordsByDifficulty(difficulty);
+
+    if (!wordsArray || wordsArray.length === 0) {
+      console.warn("No words found for difficulty:", difficulty);
+      setSecretWord("FALLBACK");
+    } else {
+      const randomIndex = Math.floor(Math.random() * wordsArray.length);
+      setSecretWord(wordsArray[randomIndex].toUpperCase());
+    }
+
     setGuessedLetters([]);
     setWrongGuesses(0);
     setGameStatus("inProgress");
-  }, [difficulty]);
-
-  // Reveal the letters guessed correctly, or underscores for unguessed
-  function getRevealedLetters() {
-    return secretWord
-      .split("")
-      .map((char) => (guessedLetters.includes(char) ? char : "_"));
   }
 
-  // Check if the user has won
-  function checkForWin() {
-    const revealed = getRevealedLetters();
+  // Show underscores or revealed letters for current guesses
+  function getRevealedLetters(customGuesses = guessedLetters) {
+    return secretWord
+      .split("")
+      .map((char) => (customGuesses.includes(char) ? char : "_"));
+  }
+
+  // Check if fully revealed
+  function checkForWin(customGuesses = guessedLetters) {
+    const revealed = getRevealedLetters(customGuesses);
     if (!revealed.includes("_")) {
       setGameStatus("won");
     }
   }
 
-  // Check if user has lost
-  function checkForLose() {
-    if (wrongGuesses >= maxWrongGuesses) {
+  // Check if lost/out of guesses
+  function checkForLose(newWrongGuesses) {
+    if (newWrongGuesses >= maxWrongGuesses) {
       setGameStatus("lost");
     }
   }
 
-  // Single letter guess
+  // Guess a single letter
   function guessLetter(letter) {
     if (gameStatus !== "inProgress") return;
-
     letter = letter.toUpperCase();
-
-    // If letter already guessed, skip
-    if (guessedLetters.includes(letter)) {
-      return;
-    }
 
     setGuessedLetters((prev) => [...prev, letter]);
 
     if (!secretWord.includes(letter)) {
-      setWrongGuesses((prev) => prev + 1);
+      setWrongGuesses((prev) => {
+        const updated = prev + 1;
+        checkForLose(updated);
+        return updated;
+      });
+    } else {
+      checkForWin([...guessedLetters, letter]);
     }
   }
 
-  // Full word guess
+  // Guess the whole word
   function guessWholeWord(wordGuess) {
     if (gameStatus !== "inProgress") return;
-
     wordGuess = wordGuess.toUpperCase();
 
     if (wordGuess === secretWord) {
@@ -72,13 +81,6 @@ export function useSpacemanGame({ maxWrongGuesses = 7, difficulty = "easy" }) {
     }
   }
 
-  // After each update of guessedLetters or wrongGuesses, check for win or lose
-  useEffect(() => {
-    checkForWin();
-    checkForLose();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [guessedLetters, wrongGuesses]);
-
   return {
     secretWord,
     guessedLetters,
@@ -87,5 +89,6 @@ export function useSpacemanGame({ maxWrongGuesses = 7, difficulty = "easy" }) {
     getRevealedLetters,
     guessLetter,
     guessWholeWord,
+    resetGame,
   };
 }
